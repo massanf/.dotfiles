@@ -1,6 +1,6 @@
 #!/bin/bash
 # === Settings ===
-PACKAGES_TO_INSTALL=("zsh" "vim" "tmux" "stow")
+PACKAGES_TO_INSTALL=("zsh" "vim" "tmux" "stow" "curl")
 DOTFILES=("vim" "zsh" "tmux")
 
 # === Install packages ===
@@ -57,9 +57,27 @@ install_packages
 DOTFILES_DIR=~/dotfiles
 cd $DOTFILES_DIR
 
-# List of directories to stow
-
 # Stow each directory
 for DOTFILE in "${DOTFILES[@]}"; do
   stow -v $DOTFILE
 done
+
+# === Setup Sh ===
+# Install Oh My Zsh if it's not installed
+if [[ ! -d ~/.oh-my-zsh ]]; then
+  echo "Installing Oh My Zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Set Zsh as the default shell
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+  chsh -s $(which zsh)
+fi
+
+# === Vim ===
+# Install Vim-Plug if it's not installed
+if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
+  echo "Installing Vim-Plug..."
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
