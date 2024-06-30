@@ -69,6 +69,11 @@ if [[ ! -d ~/.oh-my-zsh ]]; then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
+p10k_LOCATION=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+if [[ ! -d  p10k_LOCATION ]]; then
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${p10k_LOCATION}
+fi
+
 # Set Zsh as the default shell
 if [[ "$SHELL" != "$(which zsh)" ]]; then
   chsh -s $(which zsh)
