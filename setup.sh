@@ -74,6 +74,12 @@ if [[ "$SHELL" != "$(which zsh)" ]]; then
   chsh -s $(which zsh)
 fi
 
+# Activate zsh
+zsh
+
+# Load ~/.zshrc
+source ~/.zshrc
+
 # === Vim ===
 # Install Vim-Plug if it's not installed
 if [[ ! -f ~/.vim/autoload/plug.vim ]]; then
