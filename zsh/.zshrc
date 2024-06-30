@@ -6,8 +6,8 @@ alias wtfis=man
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
+# eval "$(pyenv init --path)"
+# eval "$(pyenv init -)"
 
 alias cd2img='(){cd 
 /Users/masayukifujita/Documents/Work/nagase/ai/image_analysis_streamlitapp/Search_and_Caption_test}'
@@ -26,10 +26,10 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=~/opt/anaconda3/bin:$PATH
+# export PATH=~/opt/anaconda3/bin:$PATH
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/masayukifujita/.oh-my-zsh"
-source ~/.bash_profile
+# export ZSH="/Users/masayukifujita/.oh-my-zsh"
+# source ~/.bash_profile
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
