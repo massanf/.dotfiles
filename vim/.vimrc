@@ -37,7 +37,6 @@ set expandtab
 " Ignore case if it's all lower.
 set smartcase
 
-
 " === Appearance ===
 " Set color theme.
 colorscheme iceberg
@@ -56,19 +55,6 @@ syntax on
 
 " Set git gutter.
 let g:gitgutter_async=0
-
-" == Language Specific ==
-" Typst
-augroup typst_compile
-    autocmd!
-    autocmd BufWritePost *.typ :Silent ~/sh/compile_typst.sh %
-augroup END
-
-" Markdown
-augroup markdown_compile
-    autocmd!
-    autocmd BufWritePost *.md :silent! ~/sh/compile_md.sh %
-augroup END
 
 " == Utils ==
 " Change TMUX pane title to filename.

@@ -1,1 +1,0 @@
-typst compile $1
