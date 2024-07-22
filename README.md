@@ -1,10 +1,12 @@
 ## Prerequisites
-- stow
-- zsh
-  - oh-my-zsh
-  - powerlevel10k
+- stow (brew)
+- zsh (brew)
+  - oh-my-zsh (cli)
+  - powerlevel10k (cli)
 - tmux
   - iceberg_minimal (installed)
+- vim
+  - `:PlugInstall`
 
 ## stow
 Link `~/.vimrc` to `~/dotfiles/vim/.vimrc`, etc.
