@@ -1,13 +1,13 @@
 ## Prerequisites
 - stow
 - zsh
-  - Framework: oh-my-zsh
-  - Theme: powerlevel10k
+  - oh-my-zsh
+  - powerlevel10k
 - tmux
-  - Theme: iceberg_minimal (installed)
+  - iceberg_minimal (installed)
 
 ## stow
-Link `~/.vimrc` to `~/dotfiles/zsh/.vimrc`, etc.
+Link `~/.vimrc` to `~/dotfiles/vim/.vimrc`, etc.
 ```
 cd ~/dotfiles
 stow [zsh|tmux|vim|p10k]
