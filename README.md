@@ -11,7 +11,7 @@
 
 ## stow
 Link `~/.vimrc` to `~/dotfiles/vim/.vimrc`, etc.
-```
+```sh
 cd ~/dotfiles
 stow [zsh|tmux|vim|p10k]
 ```
