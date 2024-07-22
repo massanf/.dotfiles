@@ -1,11 +1,12 @@
 ## Prerequisites
 - stow (brew)
 - zsh (brew)
+  - `chsh -s /bin/zsh`
   - oh-my-zsh (cli)
   - powerlevel10k (cli)
-- tmux
+- tmux (brew)
   - iceberg_minimal (installed)
-- vim
+- vim (brew)
   - `:PlugInstall`
 
 ## stow
