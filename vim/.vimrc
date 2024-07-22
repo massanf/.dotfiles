@@ -1,3 +1,6 @@
+" === Language ===
+language en_US
+
 " === Plugins ===
 " Vim plug. `:PlugInstall` to install.
 call plug#begin()

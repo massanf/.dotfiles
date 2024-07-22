@@ -1,21 +1,7 @@
-alias r='(){./a.out $1}'
-alias c='(){g++ -std=gnu++17 -Wall -Wextra -O2 -o ./a.out $1.cpp}'
-alias exp='(){cd documents/university/3a/experiment/$1}'
-alias audiosample='(){ffmpeg -i $1 -q:a 0 -ss $3 -t 170 -map a $2}'
-alias wtfis=man
-
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init --path)"
-# eval "$(pyenv init -)"
-
-alias cd2img='(){cd 
-/Users/masayukifujita/Documents/Work/nagase/ai/image_analysis_streamlitapp/Search_and_Caption_test}'
-alias cd2ocr='(){cd /Users/masayukifujita/Documents/Work/nagase/classic/OcrTexCompiler }'
-alias cd2lab='(){cd ~/documents/University/4SA/lab}'
-alias cd2ngs='(){cd ~/Documents/Work/nagase}'
-
-alias ssh2lab='(){sshpass -p piano38125 ssh mfujita@192.168.193.104}'
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -35,7 +21,6 @@ fi
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
