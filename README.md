@@ -26,9 +26,15 @@ stow [zsh|tmux|vim|p10k]
 ```sh
 cd ~
 git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
-brew install stow zsh tmux vim
+cd dotfiles
+
+sudo apt install stow zsh tmux vim
 stow zsh tmux vim p10k
+
 chsh -s /bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
+vim +'PlugInstall --sync' +qa
 ```
