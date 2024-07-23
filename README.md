@@ -4,7 +4,7 @@ git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
 ```
 
 ## Prerequisites
-- stow (brew/apt)
+- git curl stow (brew/apt)
 - zsh (brew/apt)
   - `chsh -s /bin/zsh`
   - oh-my-zsh (cli)
@@ -22,19 +22,3 @@ cd ~/dotfiles
 stow [zsh|tmux|vim|p10k]
 ```
 
-## Procedure
-```sh
-cd ~
-git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
-cd dotfiles
-
-sudo apt install stow zsh tmux vim
-stow zsh tmux vim p10k
-
-chsh -s /bin/zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
-vim +'PlugInstall --sync' +qa
-```
