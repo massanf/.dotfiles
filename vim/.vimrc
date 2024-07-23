@@ -1,5 +1,5 @@
 " === Language ===
-language messages en_US.utf8
+language messages en_US.UTF-8
 
 " === Plugins ===
 " `:PlugInstall` to install these.
