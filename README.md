@@ -5,9 +5,10 @@
   - oh-my-zsh (cli)
   - powerlevel10k (cli)
 - tmux (brew)
+  - tpm (installed) `C-b I` 
   - iceberg_minimal (installed)
 - vim (brew)
-  - `:PlugInstall`
+  - Vim Plug `:PlugInstall`
 
 ## stow
 Link `~/.vimrc` to `~/dotfiles/vim/.vimrc`, etc.

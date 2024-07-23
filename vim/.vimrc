@@ -40,6 +40,9 @@ set expandtab
 " Ignore case if it's all lower.
 set smartcase
 
+" Set scrolloff.
+set scrolloff=5
+
 " === Appearance ===
 " Set color theme.
 colorscheme iceberg
