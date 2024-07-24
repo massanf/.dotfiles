@@ -3,16 +3,16 @@
 # Install.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sudo apt update
-    sudo apt install -y curl stow zsh tmux vim
+    sudo apt install -y curl stow zsh tmux vim ssh
 elif [[ "$OSTYPE" == "linux-musl"* ]]; then
     sudo apk update
-    sudo apk add curl stow zsh tmux vim
+    sudo apk add curl stow zsh tmux vim ssh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v brew &> /dev/null; then
         echo "Installing Homebrew..."
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     fi
-    brew install curl stow zsh tmux vim
+    brew install curl stow zsh tmux vim ssh
 fi
 
 # Clone dotfiles repo.
