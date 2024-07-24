@@ -1,7 +1,16 @@
 #!bin/sh
 
 # Install.
-sudo apt install curl stow zsh tmux vim
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    sudo apt update
+    sudo apt install -y curl stow zsh tmux vim
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+    if ! command -v brew &> /dev/null; then
+        echo "Installing Homebrew..."
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
+    brew install curl stow zsh tmux vim
+fi
 
 # Clone dotfiles repo.
 cd ~
@@ -11,8 +20,8 @@ cd ~/dotfiles
 # Stow.
 stow vim zsh tmux
 
-# Simlinks.
+# Simlinks (omz submodule -> p10k submodule).
 ln -s ~/dotfiles/zsh/.oh-my-zsh-powerlevel10k ~/dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
 # Set default shell.
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
