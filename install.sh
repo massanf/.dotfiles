@@ -33,7 +33,7 @@ vim +'PlugInstall --sync' +qa
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Set default shell.
-sudo chsh -s /bin/zsh
+chsh -s $(which zsh)
 
 # Activate zsh.
 zsh
