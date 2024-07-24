@@ -2,13 +2,11 @@
 
 # Install.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if [[ -f /etc/alpine-release ]]; then
-        sudo apk update
-        sudo apk add curl stow zsh tmux vim
-    else
-        sudo apt update
-        sudo apt install -y curl stow zsh tmux vim
-    fi
+    sudo apt update
+    sudo apt install -y curl stow zsh tmux vim
+elif [[ "$OSTYPE" == "linux-musl"* ]]; then
+    sudo apk update
+    sudo apk add curl stow zsh tmux vim
 elif [[ "$OSTYPE" == "darwin"* ]]; then
     if ! command -v brew &> /dev/null; then
         echo "Installing Homebrew..."
