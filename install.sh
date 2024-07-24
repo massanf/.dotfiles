@@ -31,3 +31,6 @@ vim +'PlugInstall --sync' +qa
 
 # Install plugins for tmux.
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
+
+# Activate zsh.
+zsh
