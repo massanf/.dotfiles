@@ -1,5 +1,5 @@
 ## Install
 ```
-git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
+wget -qO- https://raw.githubusercontent.com/massanf/dotfiles/main/install.sh | bash
 ```
 
