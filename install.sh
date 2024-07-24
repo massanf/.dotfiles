@@ -13,18 +13,21 @@ elif [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # Clone dotfiles repo.
-cd ~
+cd $HOME
 git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
-cd ~/dotfiles
+cd $HOME/dotfiles
 
 # Stow.
 stow vim zsh tmux
 
 # Simlinks (omz submodule -> p10k submodule).
-ln -s ~/dotfiles/zsh/.oh-my-zsh-powerlevel10k ~/dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
+ln -s $HOME/dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
 # Set default shell.
 sudo chsh -s /bin/zsh
 
-# Run `:PlugInstall`.
+# Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
+
+# Install plugins for tmux.
+$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
