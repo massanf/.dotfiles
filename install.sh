@@ -25,3 +25,6 @@ ln -s ~/dotfiles/zsh/.oh-my-zsh-powerlevel10k ~/dotfiles/zsh/.oh-my-zsh/themes/p
 
 # Set default shell.
 sudo chsh -s /bin/zsh
+
+# Run `:PlugInstall`.
+vim +'PlugInstall --sync' +qa
