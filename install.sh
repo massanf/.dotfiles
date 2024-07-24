@@ -1,3 +1,5 @@
+#!bin/sh
+
 # Install.
 sudo apt install curl stow zsh tmux vim
 
@@ -12,3 +14,5 @@ stow vim zsh tmux
 # Simlinks.
 ln -s ~/dotfiles/zsh/.oh-my-zsh-powerlevel10k ~/dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
+# Set default shell.
+chsh -s /bin/zsh
