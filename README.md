@@ -1,5 +1,5 @@
 ## Install
 ```
-bash <(curl -s https://raw.githubusercontent.com/massanf/dotfiles/main/install.sh)
+curl -s https://raw.githubusercontent.com/massanf/dotfiles/main/install.sh | bash
 ```
 
