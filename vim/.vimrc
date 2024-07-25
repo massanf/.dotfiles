@@ -45,6 +45,7 @@ set scrolloff=5
 
 " === Appearance ===
 " Set color theme.
+set background=dark
 colorscheme iceberg
 if (has("termguicolors"))
   set termguicolors
