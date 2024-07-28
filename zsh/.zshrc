@@ -13,5 +13,8 @@ export LANG=en_US.UTF-8
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 # Load .zshrc_local.
 source $HOME/.zshrc_local
