@@ -66,13 +66,13 @@ $PKG_MANAGER $pkgs_string
 # Clone dotfiles repo.
 cd $HOME
 git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
-cd $HOME/dotfiles
+cd $HOME/.dotfiles
 
 # Stow.
 stow vim zsh tmux
 
 # Simlinks (omz submodule -> p10k submodule).
-ln -s $HOME/dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
+ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
 # Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
