@@ -10,7 +10,7 @@
 
 ### Install
 ```
-curl -s https://raw.githubusercontent.com/massanf/dotfiles/main/install.sh | bash
+curl -s https://raw.githubusercontent.com/massanf/.dotfiles/main/install.sh | bash
 ```
 
 ### Settings
