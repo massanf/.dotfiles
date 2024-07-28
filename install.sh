@@ -8,7 +8,6 @@ PKGS=(
   "tmux"
   "git"
   "fzf"
-  "bat"
 )
 
 CONFLICT_ITEMS=(
