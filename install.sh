@@ -7,10 +7,11 @@ PKGS=(
   "zsh"
   "tmux"
   "git"
+  "fzf"
 )
 
 CONFLICT_ITEMS=(
-#   "$HOME/dotfiles"
+  "$HOME/.dotfiles"
   "$HOME/.zshrc"
   "$HOME/.zshrc_local"
   "$HOME/.zprofile"
@@ -64,7 +65,7 @@ $PKG_MANAGER $pkgs_string
 
 # Clone dotfiles repo.
 cd $HOME
-git clone --recurse-submodules -j8 https://github.com/massanf/dotfiles.git
+git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
 cd $HOME/dotfiles
 
 # Stow.
