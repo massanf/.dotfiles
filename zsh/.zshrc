@@ -13,8 +13,5 @@ export LANG=en_US.UTF-8
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-# bat conflicts with another package on linux.
-alias bat='batcat'
-
 # Load .zshrc_local.
 source $HOME/.zshrc_local
