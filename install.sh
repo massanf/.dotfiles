@@ -63,10 +63,16 @@ for item in "${PKGS[@]}"; do
 done
 $PKG_MANAGER $pkgs_string
 
-# Clone dotfiles repo.
+# Clone or update dotfiles repo.
 cd $HOME
-git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
-cd $HOME/.dotfiles
+if [ -d "$HOME/.dotfiles" ]; then
+    cd $HOME/.dotfiles
+    git pull --recurse-submodules
+    git submodule update --init --recursive
+else
+    git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
+    cd $HOME/.dotfiles
+fi
 
 # Stow.
 stow vim zsh tmux fzf
