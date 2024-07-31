@@ -15,6 +15,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Set up fzf key bindings and fuzzy completion
 source <(fzf --zsh)
+export FZF_DEFAULT_OPTS=' --height=40%'
+export FZF_CTRL_T_OPTS='--preview="bat --color=always {}" --preview-window=right:50%'
+export FZF_TMUX_OPTS='-p 80%'
 
-# Load .zshrc_local.
+ #Load .zshrc_local.
 source $HOME/.zshrc_local
