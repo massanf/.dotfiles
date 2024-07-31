@@ -8,6 +8,7 @@ PKGS=(
   "tmux"
   "git"
   "bat"
+  "cargo"
 )
 
 CONFLICT_ITEMS=(
@@ -56,12 +57,15 @@ for item in "${CONFLICT_ITEMS[@]}"; do
     check_item "$item" || exit 1
 done
 
-# Install.
+# Install packages.
 pgks_string=""
 for item in "${PKGS[@]}"; do
     pkgs_string+="$item "
 done
 $PKG_MANAGER $pkgs_string
+
+# Install eza.
+cargo install eza
 
 # Clone or update dotfiles repo.
 cd $HOME
