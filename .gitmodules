@@ -7,3 +7,6 @@
 [submodule "zsh/.oh-my-zsh-powerlevel10k"]
 	path = zsh/.oh-my-zsh-powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "fzf/.fzf"]
+	path = fzf/.fzf
+	url = https://github.com/junegunn/fzf

@@ -7,7 +7,6 @@ PKGS=(
   "zsh"
   "tmux"
   "git"
-  "fzf"
   "bat"
 )
 
@@ -70,10 +69,13 @@ git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
 cd $HOME/.dotfiles
 
 # Stow.
-stow vim zsh tmux
+stow vim zsh tmux fzf
 
 # Simlinks (omz submodule -> p10k submodule).
 ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
+
+# Install fzf (apt installs an older version).
+$HOME/.fzf/install
 
 # Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
