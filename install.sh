@@ -75,7 +75,7 @@ stow vim zsh tmux fzf
 ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
 # Install fzf (apt installs an older version).
-sudo $HOME/.fzf/install
+$HOME/.fzf/install --bin --no-bash --no-fish
 
 # Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
