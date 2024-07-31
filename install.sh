@@ -71,11 +71,16 @@ cd $HOME/.dotfiles
 # Stow.
 stow vim zsh tmux fzf
 
-# Simlinks (omz submodule -> p10k submodule).
+# Setup simlink (omz submodule -> p10k submodule).
 ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
 # Install fzf (apt installs an older version).
 $HOME/.fzf/install --bin --no-bash --no-fish
+
+# Install bat.
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+fi
 
 # Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
