@@ -13,6 +13,7 @@ call plug#begin()
     Plug 'jiangmiao/auto-pairs'
     Plug 'psliwka/vim-smoothie'
     Plug 'airblade/vim-gitgutter'
+    Plug 'preservim/nerdtree'
 call plug#end()
 
 
@@ -42,6 +43,9 @@ set smartcase
 
 " Set scrolloff.
 set scrolloff=5
+
+" NERDTree
+nnoremap <C-t> :NERDTreeToggle<CR>
 
 " === Appearance ===
 " Set color theme.
