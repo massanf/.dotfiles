@@ -14,6 +14,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Set up fzf key bindings and fuzzy completion
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 source <(fzf --zsh)
 export FZF_DEFAULT_OPTS=' --height=40%'
 export FZF_CTRL_T_OPTS='--preview="bat --color=always {}" --preview-window=right:50%'
