@@ -20,5 +20,9 @@ export LANG=en_US.UTF-8
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
- #Load .zshrc_local.
+
+# Alias.
+alias ls="eza -alh"
+
+# Load .zshrc_local.
 source $HOME/.zshrc_local

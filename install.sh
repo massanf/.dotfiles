@@ -8,6 +8,7 @@ PKGS=(
   "tmux"
   "git"
   "bat"
+  "cargo"
 )
 
 CONFLICT_ITEMS=(
@@ -82,6 +83,9 @@ ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zs
 
 # Install fzf (apt installs an older version).
 $HOME/.fzf/install --bin --no-bash --no-fish
+
+# Install Eza.
+cargo install eza
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
