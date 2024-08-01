@@ -8,7 +8,6 @@ PKGS=(
   "tmux"
   "git"
   "bat"
-  "cargo"
 )
 
 CONFLICT_ITEMS=(
@@ -81,11 +80,15 @@ stow vim zsh tmux fzf
 # Setup simlink (omz submodule -> p10k submodule).
 ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
 
+# Install rust.
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
 # Install fzf (apt installs an older version).
 $HOME/.fzf/install --bin --no-bash --no-fish
 
 # Install Eza.
 cargo install eza
+cargo install git-delta
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
