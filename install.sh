@@ -8,6 +8,7 @@ PKGS=(
   "tmux"
   "git"
   "bat"
+  "ripgrep"
 )
 
 CONFLICT_ITEMS=(

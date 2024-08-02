@@ -14,10 +14,12 @@ call plug#begin()
     Plug 'psliwka/vim-smoothie'
     Plug 'airblade/vim-gitgutter'
     Plug 'preservim/nerdtree'
+    Plug 'tpope/vim-fugitive'
+    Plug 'dense-analysis/ale'
 call plug#end()
 
 
-" === Function ===
+" === Behavior ===
 " Escape with jk or kj.
 imap jk <Esc>
 imap kj <Esc>
@@ -39,13 +41,9 @@ set shiftwidth=4
 set expandtab
 
 " Ignore case if it's all lower.
+set ignorecase
 set smartcase
 
-" Set scrolloff.
-set scrolloff=5
-
-" NERDTree
-nnoremap <C-t> :NERDTreeToggle<CR>
 
 " === Appearance ===
 " Set color theme.
@@ -64,8 +62,44 @@ set hlsearch
 " Set syntax highlighting.
 syntax on
 
+
+" === Plugin Settings ===
+" Set scrolloff.
+set scrolloff=5
+
+" NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeWinPos = "right"
+
+" Linter.
+let g:ale_enabled = 1
+let g:ale_linters = {
+    \ 'rust': ['clippy'],
+    \ 'python': ['flake8'],
+    \ 'cpp': ['clangtidy'],
+    \ 'cs': ['clangtidy'],
+    \ }
+let g:ale_fixers = {
+    \ 'rust': ['rustfmt'],
+    \ 'python': ['autopep8'],
+    \ 'cpp': ['clang-format'],
+    \ 'cs': ['clang-format'],
+    \ }
+let g:ale_sign_column_always = 1
+let g:ale_fix_on_save = 1
+let g:ale_virtualtext_cursor = 1
+let g:ale_completion_enabled = 1
+
 " Set git gutter.
 let g:gitgutter_async=0
+
+" Changes on the left with :Gvdiffsplit.
+command! Gdiff horizontal Gdiffsplit | wincmd r
+
+" Fzf.
+nnoremap <C-t> :Files<CR>
+let g:fzf_action = { 'enter': 'tab drop' }
+
 
 " == Utils ==
 " Change TMUX pane title to filename.
