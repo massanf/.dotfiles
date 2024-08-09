@@ -68,8 +68,9 @@ syntax on
 set scrolloff=5
 
 " NERDTree
-nnoremap <C-n> :NERDTreeToggle<CR>
 let g:NERDTreeWinPos = "right"
+let mapleader = ","
+nmap <leader>t :NERDTreeToggle<cr>
 
 " Linter.
 let g:ale_enabled = 1

@@ -1,2 +1,3 @@
 # The content of this file is not tracked.
 # Add local .zshrc changes here, and it will be loaded.
+eval "$(pyenv init --path)"
