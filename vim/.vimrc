@@ -44,6 +44,11 @@ set expandtab
 set ignorecase
 set smartcase
 
+" Autoreload changed file.
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI *
+  \ if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
 " === Appearance ===
 " Set color theme.
@@ -69,8 +74,7 @@ set scrolloff=5
 
 " NERDTree
 let g:NERDTreeWinPos = "right"
-let mapleader = ","
-nmap <leader>t :NERDTreeToggle<cr>
+nmap <C-s> :NERDTreeToggle<cr>
 
 " Linter.
 let g:ale_enabled = 1
@@ -85,6 +89,8 @@ let g:ale_fixers = {
     \ 'python': ['autopep8'],
     \ 'cpp': ['clang-format'],
     \ 'cs': ['clang-format'],
+    \ 'typescript': ['prettier', 'eslint'],
+    \ 'typescriptreact': ['prettier', 'eslint'],
     \ }
 let g:ale_sign_column_always = 1
 let g:ale_fix_on_save = 1

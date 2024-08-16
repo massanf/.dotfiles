@@ -76,7 +76,7 @@ else
 fi
 
 # Stow.
-stow vim zsh tmux fzf
+stow vim zsh tmux fzf git
 
 # Setup simlink (omz submodule -> p10k submodule).
 ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
