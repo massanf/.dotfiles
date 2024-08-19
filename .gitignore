@@ -3,4 +3,4 @@
 tmux/.tmux/plugins/
 !tmux/.tmux/plugins/tpm/
 
-vim/.vim/plugged
+nvim/.config/nvim/site/plugged
