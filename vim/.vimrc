@@ -67,6 +67,19 @@ set hlsearch
 " Set syntax highlighting.
 syntax on
 
+" cscope
+set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+if has("cscope")
+  set csprg=/usr/local/bin/cscope
+  set csto=1
+  set cst
+  set nocsverb
+  " Add the cscope database
+  if filereadable("cscope.out")
+    cs add cscope.out .
+  endif
+endif
 
 " === Plugin Settings ===
 " Set scrolloff.
