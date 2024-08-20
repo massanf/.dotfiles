@@ -42,6 +42,27 @@ vim.opt.expandtab = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- Trigger autoread when files change on disk
+vim.o.autoread = true
+
+-- Autocommand for checking the file status when focus is gained or cursor is moved
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter", "CursorHold", "CursorHoldI"}, {
+  pattern = "*",
+  callback = function()
+    if vim.fn.mode() ~= 'c' then
+      vim.cmd('checktime')
+    end
+  end
+})
+
+-- Notification after file change
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  callback = function()
+    vim.cmd('echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None')
+  end
+})
+
 -- === Appearance ===
 -- Set color scheme
 vim.opt.background = 'dark'
@@ -84,6 +105,7 @@ vim.g.ale_sign_column_always = 1
 vim.g.ale_fix_on_save = 1
 vim.g.ale_virtualtext_cursor = 1
 vim.g.ale_completion_enabled = 1
+vim.g.ale_python_auto_poetry = 1
 
 -- === GitGutter ===
 vim.g.gitgutter_async = 0
