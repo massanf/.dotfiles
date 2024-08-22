@@ -20,6 +20,7 @@ Plug('airblade/vim-gitgutter')
 Plug('preservim/nerdtree')
 Plug('tpope/vim-fugitive')
 Plug('dense-analysis/ale')
+Plug('neoclide/coc.nvim', { branch = 'release' })
 vim.call('plug#end')
 
 -- === Behavior ===
@@ -44,23 +45,9 @@ vim.opt.smartcase = true
 
 -- Trigger autoread when files change on disk
 vim.o.autoread = true
-
--- Autocommand for checking the file status when focus is gained or cursor is moved
-vim.api.nvim_create_autocmd({"FocusGained", "BufEnter", "CursorHold", "CursorHoldI"}, {
-  pattern = "*",
-  callback = function()
-    if vim.fn.mode() ~= 'c' then
-      vim.cmd('checktime')
-    end
-  end
-})
-
--- Notification after file change
-vim.api.nvim_create_autocmd("FileChangedShellPost", {
-  pattern = "*",
-  callback = function()
-    vim.cmd('echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None')
-  end
+vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
 })
 
 -- === Appearance ===
@@ -83,7 +70,22 @@ vim.opt.scrolloff = 5
 
 -- === NERDTree ===
 vim.g.NERDTreeWinPos = 'right'
-vim.api.nvim_set_keymap('n', '<C-s>', ':NERDTreeToggle<CR>', { noremap = true, silent = true })
+function IsNERDTreeOpen()
+  local nerdtree_bufname = vim.t.NERDTreeBufName
+  if nerdtree_bufname and vim.fn.bufwinnr(nerdtree_bufname) ~= -1 then
+    return true
+  else
+    return false
+  end
+end
+function ToggleNERDTree()
+  if IsNERDTreeOpen() then
+    vim.cmd("NERDTreeClose")
+  else
+    vim.cmd("NERDTreeFind")
+  end
+end
+vim.api.nvim_set_keymap('n', '<C-s>', ':lua ToggleNERDTree()<CR>', { noremap = true, silent = true })
 
 -- === ALE Settings ===
 vim.g.ale_enabled = 1
