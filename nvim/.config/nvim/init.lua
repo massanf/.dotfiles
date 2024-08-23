@@ -19,7 +19,6 @@ Plug('psliwka/vim-smoothie')
 Plug('airblade/vim-gitgutter')
 Plug('preservim/nerdtree')
 Plug('tpope/vim-fugitive')
-Plug('dense-analysis/ale')
 Plug('neoclide/coc.nvim', { branch = 'release' })
 vim.call('plug#end')
 
@@ -87,28 +86,6 @@ function ToggleNERDTree()
 end
 vim.api.nvim_set_keymap('n', '<C-s>', ':lua ToggleNERDTree()<CR>', { noremap = true, silent = true })
 
--- === ALE Settings ===
-vim.g.ale_enabled = 1
-vim.g.ale_linters = {
-  rust = { 'clippy' },
-  python = { 'flake8' },
-  cpp = { 'clangtidy' },
-  cs = { 'clangtidy' }
-}
-vim.g.ale_fixers = {
-  rust = { 'rustfmt' },
-  python = { 'autopep8' },
-  cpp = { 'clang-format' },
-  cs = { 'clang-format' },
-  typescript = { 'prettier', 'eslint' },
-  typescriptreact = { 'prettier', 'eslint' }
-}
-vim.g.ale_sign_column_always = 1
-vim.g.ale_fix_on_save = 1
-vim.g.ale_virtualtext_cursor = 1
-vim.g.ale_completion_enabled = 1
-vim.g.ale_python_auto_poetry = 1
-
 -- === GitGutter ===
 vim.g.gitgutter_async = 0
 
@@ -118,6 +95,24 @@ vim.cmd [[command! Gdiff horizontal Gdiffsplit | wincmd r]]
 -- === Fzf ===
 vim.api.nvim_set_keymap('n', '<C-t>', ':Files<CR>', { noremap = true, silent = true })
 vim.g.fzf_action = { ['enter'] = 'tab drop' }
+
+
+-- === coc ===
+vim.opt.updatetime = 300
+vim.opt.signcolumn = "yes"
+function _G.check_back_space()
+    local col = vim.fn.col('.') - 1
+    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
+end
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
+vim.keymap.set("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+vim.keymap.set("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+vim.keymap.set("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
+vim.keymap.set("n", "gd", "<Plug>(coc-definition)", {silent = true})
+vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
+vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", {silent = true})
+vim.keymap.set("n", "gr", "<Plug>(coc-references)", {silent = true})
 
 -- === Utils ===
 -- Change TMUX pane title to filename
