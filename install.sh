@@ -10,6 +10,7 @@ PKGS=(
   "bat"
   "ripgrep"
   "nvim"
+  "font-hack-nerd-font"
 )
 
 CONFLICT_ITEMS=(

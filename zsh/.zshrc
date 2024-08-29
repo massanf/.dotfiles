@@ -22,6 +22,8 @@ export FZF_TMUX_OPTS='-p 80%'
 
 # Alias.
 alias ls="eza -alh"
+alias vim="nvim"
+alias tmux="sh $HOME/launch_tmux.sh"
 
 # Load .zshrc_local.
 source $HOME/.zshrc_local
