@@ -4,3 +4,5 @@ tmux/.tmux/plugins/
 !tmux/.tmux/plugins/tpm/
 
 nvim/.config/nvim/site/plugged
+nvim/.config/nvim/coc/extensions
+!nvim/.config/nvim/coc/extensions/package.json
