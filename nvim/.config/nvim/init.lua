@@ -25,6 +25,7 @@ Plug('nvim-tree/nvim-web-devicons')
 Plug('ryanoasis/vim-devicons')
 Plug('akinsho/bufferline.nvim', { tag = '*' })
 Plug('neoclide/coc.nvim', { branch = 'release' })
+Plug('nvim-lualine/lualine.nvim')
 vim.call('plug#end')
 
 -- === Behavior ===
@@ -144,6 +145,13 @@ require("bufferline").setup{
         },
     },
 }
+
+-- === status line ===
+require('lualine').setup({
+    options = {
+        theme = 'iceberg_dark',
+    }
+})
 
 -- === Utils ===
 -- Change TMUX pane title to filename

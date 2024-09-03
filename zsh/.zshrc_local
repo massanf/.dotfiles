@@ -2,3 +2,5 @@
 # Add local .zshrc changes here, and it will be loaded.
 eval "$(pyenv init --path)"
 export PATH="$PATH:$HOME/.dotnet/tools"
+alias atc="cd ~/work/asuni/atcaser"
+alias pso="cd ~/uni/research/M/psobench"
