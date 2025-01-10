@@ -106,7 +106,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 fi
 
 # Install plugins for Vim.
-log_and_run "vim +'PlugInstall --sync' +qa"
+log_and_run "nvim +PackerSync +qa"
 
 # Install nerdfont.
 log_and_run "git clone https://github.com/ryanoasis/nerd-fonts.git"
