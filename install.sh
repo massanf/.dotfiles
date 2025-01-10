@@ -90,14 +90,15 @@ log_and_run "stow nvim zsh tmux fzf git"
 # Setup simlink (omz submodule -> p10k submodule).
 log_and_run "ln -sf $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k"
 
-# Install rust.
-log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+if [[ "$OSTYPE" != "linux-musl"* ]]; then
+  # Install rust.
+  log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+  # Install Eza.
+  log_and_run "cargo install eza git-delta"
+fi
 
 # Install fzf (apt installs an older version).
 log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
-
-# Install Eza.
-log_and_run "cargo install eza git-delta"
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
