@@ -12,6 +12,7 @@ PKGS=(
   "git"
   "bat"
   "ripgrep"
+  "neovim"
 )
 
 CONFLICT_ITEMS=(
@@ -103,11 +104,6 @@ fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     log_and_run "sudo ln -sf /usr/bin/batcat /usr/local/bin/bat"
 fi
-
-# Install Neovim.
-log_and_run "curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage"
-log_and_run "chmod u+x nvim.appimage"
-log_and_run "./nvim.appimage"
 
 # Install plugins for Vim.
 log_and_run "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
