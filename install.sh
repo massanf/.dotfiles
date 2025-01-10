@@ -1,5 +1,8 @@
 #!bin/sh
 
+# Exit on error.
+set -e
+
 # Variables.
 PKGS=(
   "curl"
@@ -9,8 +12,7 @@ PKGS=(
   "git"
   "bat"
   "ripgrep"
-  "nvim"
-  "font-hack-nerd-font"
+  "neovim"
 )
 
 CONFLICT_ITEMS=(
@@ -25,6 +27,14 @@ CONFLICT_ITEMS=(
   "$HOME/.tmux"
   "$HOME/.tmux.conf"
 )
+
+# Logger.
+log_and_run() {
+    printf "\n\n\n============================================================\n"
+    printf "[INFO] Running command: $*\n"
+    printf "============================================================\n"
+    eval "$*"
+}
 
 # Functions.
 check_item() {
@@ -64,48 +74,49 @@ pgks_string=""
 for item in "${PKGS[@]}"; do
     pkgs_string+="$item "
 done
-$PKG_MANAGER $pkgs_string
+log_and_run "$PKG_MANAGER $pkgs_string"
 
 # Clone or update dotfiles repo.
 cd $HOME
 if [ -d "$HOME/.dotfiles" ]; then
-    cd $HOME/.dotfiles
-    git pull --recurse-submodules
-    git submodule update --init --recursive
+    log_and_run "cd $HOME/.dotfiles && git pull --recurse-submodules && git submodule update --init --recursive"
 else
-    git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
-    cd $HOME/.dotfiles
+    log_and_run "git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git && cd $HOME/.dotfiles"
 fi
 
 # Stow.
-stow nvim zsh tmux fzf git
+log_and_run "stow nvim zsh tmux fzf git"
 
 # Setup simlink (omz submodule -> p10k submodule).
-ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
+log_and_run "ln -sf $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k"
 
-# Install rust.
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-# Install fzf (apt installs an older version).
-$HOME/.fzf/install --bin --no-bash --no-fish
-
-# Install Eza.
-cargo install eza
-cargo install git-delta
+# Exclude iSH (not supported).
+if [[ "$OSTYPE" != "linux-musl"* ]]; then
+  # Install rust.
+  log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+  # Install Eza.
+  log_and_run "cargo install eza git-delta"
+  # Install fzf (apt installs an older version).
+  log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
+fi
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+    log_and_run "sudo ln -sf /usr/bin/batcat /usr/local/bin/bat"
 fi
 
 # Install plugins for Vim.
-vim +'PlugInstall --sync' +qa
+log_and_run "vim +'PlugInstall --sync' +qa"
+
+# Install nerdfont.
+log_and_run "git clone https://github.com/ryanoasis/nerd-fonts.git"
+log_and_run "$HOME/nerd-fonts/install.sh Hack"
 
 # Install plugins for tmux.
-$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
+log_and_run "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 # Set default shell.
-chsh -s $(which zsh)
+log_and_run "chsh -s $(which zsh)"
 
 # Activate zsh.
-zsh
+log_and_run "zsh"
