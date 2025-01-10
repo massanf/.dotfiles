@@ -30,6 +30,11 @@ CONFLICT_ITEMS=(
 
 # Logger.
 log_and_run() {
+    echo ""
+    echo ""
+    echo ""
+    echo ""
+    echo ""
     echo "============================================================"
     echo "[INFO] Running command: $*"
     echo "============================================================"
