@@ -67,9 +67,7 @@ pgks_string=""
 for item in "${PKGS[@]}"; do
     pkgs_string+="$item "
 done
-echo $PKG_MANAGER
-echo $pkgs_string
-$PKG_MANAGER "$pkgs_string"
+eval "$PKG_MANAGER $pkgs_string"
 
 # Clone or update dotfiles repo.
 cd $HOME
