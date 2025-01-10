@@ -12,8 +12,7 @@ PKGS=(
   "git"
   "bat"
   "ripgrep"
-  "nvim"
-  "font-hack-nerd-font"
+  "neovim"
 )
 
 CONFLICT_ITEMS=(
@@ -103,6 +102,10 @@ fi
 
 # Install plugins for Vim.
 vim +'PlugInstall --sync' +qa
+
+# Install nerdfont.
+git clone https://github.com/ryanoasis/nerd-fonts.git
+$HOME/nerd-fonts/install.sh Hack
 
 # Install plugins for tmux.
 $HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
