@@ -109,8 +109,8 @@ fi
 log_and_run "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'"
 
 # Install nerdfont.
-log_and_run "git clone https://github.com/ryanoasis/nerd-fonts.git"
-log_and_run "$HOME/nerd-fonts/install.sh Hack"
+# log_and_run "git clone https://github.com/ryanoasis/nerd-fonts.git"
+# log_and_run "$HOME/nerd-fonts/install.sh Hack"
 
 # Install plugins for tmux.
 log_and_run "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
