@@ -28,6 +28,14 @@ CONFLICT_ITEMS=(
   "$HOME/.tmux.conf"
 )
 
+# Logger.
+log_and_run() {
+    echo "============================================================"
+    echo "[INFO] Running command: $*"
+    echo "============================================================"
+    eval "$*"
+}
+
 # Functions.
 check_item() {
     for item in "${items[@]}"; do
@@ -66,52 +74,48 @@ pgks_string=""
 for item in "${PKGS[@]}"; do
     pkgs_string+="$item "
 done
-eval "$PKG_MANAGER $pkgs_string"
+log_and_run "$PKG_MANAGER $pkgs_string"
 
 # Clone or update dotfiles repo.
 cd $HOME
 if [ -d "$HOME/.dotfiles" ]; then
-    cd $HOME/.dotfiles
-    git pull --recurse-submodules
-    git submodule update --init --recursive
+    log_and_run "cd $HOME/.dotfiles && git pull --recurse-submodules && git submodule update --init --recursive"
 else
-    git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git
-    cd $HOME/.dotfiles
+    log_and_run "git clone --recurse-submodules -j8 https://github.com/massanf/.dotfiles.git && cd $HOME/.dotfiles"
 fi
 
 # Stow.
-stow nvim zsh tmux fzf git
+log_and_run "stow nvim zsh tmux fzf git"
 
 # Setup simlink (omz submodule -> p10k submodule).
-ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k
+log_and_run "ln -s $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k"
 
 # Install rust.
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
 
 # Install fzf (apt installs an older version).
-$HOME/.fzf/install --bin --no-bash --no-fish
+log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
 
 # Install Eza.
-cargo install eza
-cargo install git-delta
+log_and_run "cargo install eza git-delta"
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo ln -s /usr/bin/batcat /usr/local/bin/bat
+    log_and_run "sudo ln -s /usr/bin/batcat /usr/local/bin/bat"
 fi
 
 # Install plugins for Vim.
-vim +'PlugInstall --sync' +qa
+log_and_run "vim +'PlugInstall --sync' +qa"
 
 # Install nerdfont.
-git clone https://github.com/ryanoasis/nerd-fonts.git
-$HOME/nerd-fonts/install.sh Hack
+log_and_run "git clone https://github.com/ryanoasis/nerd-fonts.git"
+log_and_run "$HOME/nerd-fonts/install.sh Hack"
 
 # Install plugins for tmux.
-$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh
+log_and_run "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 # Set default shell.
-chsh -s $(which zsh)
+log_and_run "chsh -s $(which zsh)"
 
 # Activate zsh.
-zsh
+log_and_run "zsh"
