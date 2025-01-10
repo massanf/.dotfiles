@@ -6,28 +6,48 @@ vim.opt.helplang = "en"
 
 -- === Plugin Manager Setup ===
 -- vim-plug setup
-local Plug = vim.fn['plug#']
-vim.call('plug#begin')
-Plug('junegunn/fzf')
-Plug('junegunn/fzf.vim')
-Plug('cocopon/iceberg.vim')
-Plug('MarcWeber/vim-addon-mw-utils')
-Plug('garbas/vim-snipmate')
-Plug('kaarmu/typst.vim')
-Plug('jiangmiao/auto-pairs')
-Plug('psliwka/vim-smoothie')
-Plug('lewis6991/gitsigns.nvim')
-Plug('nvim-tree/nvim-tree.lua')
-Plug('tpope/vim-fugitive')
-Plug('petertriho/nvim-scrollbar')
-Plug('kevinhwang91/nvim-hlslens')
-Plug('nvim-tree/nvim-web-devicons')
-Plug('ryanoasis/vim-devicons')
-Plug('akinsho/bufferline.nvim', { tag = '*' })
-Plug('neoclide/coc.nvim', { branch = 'release' })
-Plug('nvim-lualine/lualine.nvim')
-Plug('tversteeg/registers.nvim')
-vim.call('plug#end')
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({
+      'git',
+      'clone',
+      '--depth',
+      '1',
+      'https://github.com/wbthomason/packer.nvim',
+      install_path
+    })
+    vim.cmd([[packadd packer.nvim]])
+  end
+end
+
+ensure_packer()
+
+require('packer').startup(function(use)
+  use 'wbthomason/packer.nvim'  -- Let packer manage itself
+
+  -- Below are your plugins from the vim-plug block:
+  use 'junegunn/fzf'
+  use 'junegunn/fzf.vim'
+  use 'cocopon/iceberg.vim'
+  use 'MarcWeber/vim-addon-mw-utils'
+  use 'garbas/vim-snipmate'
+  use 'kaarmu/typst.vim'
+  use 'jiangmiao/auto-pairs'
+  use 'psliwka/vim-smoothie'
+  use 'lewis6991/gitsigns.nvim'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'tpope/vim-fugitive'
+  use 'tversteeg/registers.nvim'
+  use 'petertriho/nvim-scrollbar'
+  use 'kevinhwang91/nvim-hlslens'
+  use 'nvim-tree/nvim-web-devicons'
+  use 'ryanoasis/vim-devicons'
+  use { 'akinsho/bufferline.nvim', tag = '*' }
+  use { 'neoclide/coc.nvim', branch = 'release' }
+  use 'nvim-lualine/lualine.nvim'
+end)
 
 -- === Behavior ===
 -- Escape with jk or kj
