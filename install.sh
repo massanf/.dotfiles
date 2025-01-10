@@ -30,9 +30,9 @@ CONFLICT_ITEMS=(
 
 # Logger.
 log_and_run() {
-    echo "\n\n\n============================================================"
-    echo "[INFO] Running command: $*"
-    echo "============================================================"
+    printf "\n\n\n============================================================"
+    printf "[INFO] Running command: $*"
+    printf "============================================================"
     eval "$*"
 }
 
@@ -90,15 +90,15 @@ log_and_run "stow nvim zsh tmux fzf git"
 # Setup simlink (omz submodule -> p10k submodule).
 log_and_run "ln -sf $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles/zsh/.oh-my-zsh/themes/powerlevel10k"
 
+# Exclude iSH (not supported).
 if [[ "$OSTYPE" != "linux-musl"* ]]; then
   # Install rust.
   log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
   # Install Eza.
   log_and_run "cargo install eza git-delta"
+  # Install fzf (apt installs an older version).
+  log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
 fi
-
-# Install fzf (apt installs an older version).
-log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
 
 # Install bat.
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
