@@ -19,6 +19,8 @@ export FZF_DEFAULT_OPTS=' --height=40%'
 export FZF_CTRL_R_OPTS=''
 export FZF_CTRL_T_OPTS='--preview="bat --color=always {}" --preview-window=right:50%'
 export FZF_TMUX_OPTS='-p 80%'
+export GOPATH="$HOME/.go"
+export PATH="$GOPATH/bin:$PATH"
 
 # Alias.
 alias ls="eza -alh"

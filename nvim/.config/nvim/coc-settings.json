@@ -1,4 +1,14 @@
 {
-  "coc.preferences.formatOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["*"]
+    "eslint.autoFixOnSave": true,
+    "eslint.format.enable": true,
+    "prettier.enable": true,
+    "python.linting.mypyEnabled": false,
+    "python.linting.mypyArgs": [
+        "--no-pretty",
+        "--follow-imports=silent",
+        "--warn_redundant_casts",
+        "--warn_unused_ignores",
+        "--disallow_any_generics",
+        "--check_untyped_defs"
+    ]
 }

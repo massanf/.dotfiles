@@ -26,6 +26,7 @@ Plug('ryanoasis/vim-devicons')
 Plug('akinsho/bufferline.nvim', { tag = '*' })
 Plug('neoclide/coc.nvim', { branch = 'release' })
 Plug('nvim-lualine/lualine.nvim')
+Plug('tversteeg/registers.nvim')
 vim.call('plug#end')
 
 -- === Behavior ===
@@ -80,7 +81,10 @@ vim.opt.termguicolors = true
 require("nvim-tree").setup({
     view = {
 		side = "right"
-	}
+	},
+    update_focused_file = {
+        enable = true
+    }
 })
 vim.api.nvim_set_keymap('n', '<C-s>', ':NvimTreeToggle()<CR>', { noremap = true, silent = true })
 
@@ -91,8 +95,53 @@ require('gitsigns').setup()
 require("scrollbar").setup({
     marks = {
         Cursor = {
-            text = "-",
+            text = "•",
             priority = 0,
+            gui = nil,
+            color = nil,
+            cterm = nil,
+            color_nr = nil, -- cterm
+            highlight = "Normal",
+        },
+        Error = {
+            text = {""},
+            priority = 2,
+            gui = nil,
+            color = nil,
+            cterm = nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextError",
+        },
+        Warn = {
+            text = {""},
+            priority = 3,
+            gui = nil,
+            color = nil,
+            cterm = nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextWarn",
+        },
+        Info = {
+            text = {""},
+            priority = 4,
+            gui = nil,
+            color = nil,
+            cterm = nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextInfo",
+        },
+        Hint = {
+            text = {"󰌶"},
+            priority = 5,
+            gui = nil,
+            color = nil,
+            cterm = nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextHint",
+        },
+        Misc = {
+            text = {"󰌶"},
+            priority = 6,
             gui = nil,
             color = nil,
             cterm = nil,
@@ -108,6 +157,10 @@ require("scrollbar").setup({
         search = true,
     },
 })
+
+
+-- === registers ===
+require("registers").setup()
 
 -- Gvdiffsplit command
 vim.cmd [[command! Gdiff horizontal Gdiffsplit | wincmd r]]
@@ -132,6 +185,7 @@ vim.keymap.set("n", "gd", "<Plug>(coc-definition)", {silent = true})
 vim.keymap.set("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
 vim.keymap.set("n", "gi", "<Plug>(coc-implementation)", {silent = true})
 vim.keymap.set("n", "gr", "<Plug>(coc-references)", {silent = true})
+vim.keymap.set("n", "gn", "<Plug>(coc-rename)", {silent = true})
 
 --- === tab ===
 vim.opt.termguicolors = true
@@ -141,8 +195,9 @@ vim.api.nvim_set_keymap('n', 'gq', ':bdelete<CR>', { noremap = true, silent = tr
 require("bufferline").setup{
     options = {
         indicator = {
-            style = 'none'
+            style = 'none',
         },
+        diagnostics = 'coc',
     },
 }
 
