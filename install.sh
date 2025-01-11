@@ -3,6 +3,12 @@
 # Exit on error.
 set -e
 
+# Check if the script is run with sudo privileges.
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as a user with sudo privileges. Please run with 'sudo' or as root."
+    exit 1
+fi
+
 # Variables.
 PKGS=(
   "curl"
@@ -116,7 +122,7 @@ log_and_run "nvim --headless -c 'autocmd User PackerComplete quitall' -c 'Packer
 log_and_run "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 # Set default shell.
-log_and_run "chsh -s $(which zsh)"
+log_and_run "sudo chsh -s $(which zsh)"
 
 # Activate zsh.
 log_and_run "zsh"
