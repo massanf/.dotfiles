@@ -124,6 +124,7 @@ log_and_run "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh"
 
 # Set default shell.
 log_and_run "sudo chsh -s $(which zsh)"
+log_and_run "exec '$(which zsh)'"
 
 # Activate zsh.
 log_and_run "zsh"
