@@ -1,7 +1,2 @@
 # The content of this file is not tracked.
 # Add local .zshrc changes here, and it will be loaded.
-eval "$(pyenv init --path)"
-export PATH="$PATH:$HOME/.dotnet/tools"
-alias atc="cd ~/work/asuni/atcaser"
-alias pso="cd ~/uni/research/M/psobench"
-alias rsp="cd ~/pso; sshpass -p 'piano38125' rsync -avz --exclude-from='.gitignore' ~/Documents/University/research/M/psobench mfujita@192.168.193.104:~/"
