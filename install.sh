@@ -127,3 +127,5 @@ log_and_run "sudo chsh -s $(which zsh) $(whoami)"
 
 # Activate zsh.
 log_and_run "zsh"
+
+echo "Please log out and log back in."
