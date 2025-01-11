@@ -100,7 +100,7 @@ log_and_run "ln -sf $HOME/.dotfiles/zsh/.oh-my-zsh-powerlevel10k $HOME/.dotfiles
 if [[ "$OSTYPE" != "linux-musl"* ]]; then
   # Install rust.
   log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
-  . "$HOME/.cargo/env"
+  source "$HOME/.cargo/env"
   # Install Eza.
   log_and_run ".cargo/bin/cargo install eza git-delta"
   # Install fzf (apt installs an older version).
