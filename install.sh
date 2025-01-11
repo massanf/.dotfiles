@@ -102,7 +102,7 @@ if [[ "$OSTYPE" != "linux-musl"* ]]; then
   log_and_run "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
   source "$HOME/.cargo/env"
   # Install Eza.
-  log_and_run ".cargo/bin/cargo install eza git-delta"
+  log_and_run "cargo install eza git-delta"
   # Install fzf (apt installs an older version).
   log_and_run "$HOME/.fzf/install --bin --no-bash --no-fish"
 fi
